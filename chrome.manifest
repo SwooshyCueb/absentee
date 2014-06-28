@@ -1,0 +1,4 @@
+content absentee content/
+skin    absentee classic/1.0 skin/
+overlay chrome://browser/content/browser.xul          chrome://absentee/content/firefoxOverlay.xul
+style   chrome://global/content/customizeToolbar.xul  chrome://absentee/skin/overlay.css

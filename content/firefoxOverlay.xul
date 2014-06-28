@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://absentee/skin/overlay.css" type="text/css"?>
+<!DOCTYPE window>
+<overlay id="absentee-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="overlay.js"/>
+
+<window id="main-window" hidechrome="true" >
+  <hbox id="absentee-box"    insertbefore="tab-view-deck">
+    <hbox class="absentee-side absentee-side-horiz" dir="top">
+      <resizer class="absentee-resizer absentee-resizer-side" dir="top"/>
+    </hbox>
+    <hbox class="absentee-side absentee-side-vert" dir="left">
+      <resizer class="absentee-resizer absentee-resizer-side" dir="left"/>
+    </hbox>
+    <hbox class="absentee-side absentee-side-vert" dir="right">
+      <resizer class="absentee-resizer absentee-resizer-side" dir="right"/>
+    </hbox>
+    <hbox class="absentee-side absentee-side-horiz" dir="bottom">
+      <resizer class="absentee-resizer absentee-resizer-side" dir="bottom"/>
+    </hbox>
+    <hbox class="absentee-corner" dir="topleft">
+      <resizer class="absentee-resizer absentee-resizer-corner" dir="topleft"/>
+    </hbox>
+    <hbox class="absentee-corner" dir="topright">
+      <resizer class="absentee-resizer absentee-resizer-corner" dir="topright"/>
+    </hbox>
+    <hbox class="absentee-corner" dir="bottomleft">
+      <resizer class="absentee-resizer absentee-resizer-corner" dir="bottomleft"/>
+    </hbox>
+    <hbox class="absentee-corner" dir="bottomright">
+      <resizer class="absentee-resizer absentee-resizer-corner" dir="bottomright" style="-moz-appearance:none;"/>
+    </hbox>
+  </hbox>
+
+</window>
+
+<toolbar id="TabsToolbar">
+  <hbox id="absentee-window-controls" pack="end" ordinal="1000" insertafter="tabs-closebutton">
+    <toolbarbutton id="minimize-button" tooltiptext="Minimize" oncommand="window.minimize();"/>
+    <toolbarbutton id="restore-button" tooltiptext="Restore" oncommand="Absentee.maximize();"/>
+    <toolbarbutton id="close-button" tooltiptext="Close" oncommand="BrowserTryToCloseWindow();"/>
+  </hbox>
+</toolbar>
+
+</overlay>
