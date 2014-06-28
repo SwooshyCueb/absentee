@@ -10,7 +10,7 @@
 	border-top-right-radius: 5px;
 }
 
-#main-window .absentee-resizer {
+#main-window .absentee-resizer { /* Basis for resizers */
 	position: absolute;
 	z-index: 7;
 	padding:0px;
@@ -19,16 +19,16 @@
 	-moz-appearance: none;
 }
 
-#main-window:not([abs-winstate="normal"]) .absentee-resizer {
+#main-window:not([abs-winstate="normal"]) .absentee-resizer { /* No resizers when maximized. */
 	display: none!important;
 }
 
-#main-window .absentee-resizer-corner {
+#main-window .absentee-resizer-corner { /* Basis for corner resizers */
 	width: 8px;
 	height: 8px;
 }
 
-#main-window .absentee-resizer-side {
+#main-window .absentee-resizer-side { /* Basis for edge resizers */
 	width: 100%;
 	height: 100%;
 	-moz-border-top-colors: none;
@@ -38,14 +38,14 @@
 	border-color: rgba(0, 0, 0, 0.4);
 }
 
-#main-window .absentee-corner {
+#main-window .absentee-corner { /* Make sure the corner resizers actually end up in the corner... */
 	position: fixed;
 	padding:0px;
 	border:0px none;
 	margin:0px;
 }
 
-#main-window .absentee-side {
+#main-window .absentee-side { /* ...and the edge resizers on the edges */
 	position: fixed;
 	padding:0px;
 	border:0px none;
@@ -53,19 +53,22 @@
 	z-index: 5;
 }
 
-#main-window .absentee-side-vert {
+#main-window .absentee-side-vert { /* Stuff for vertical edge resizers */
 	top: 0px;
 	-moz-box-orient: vertical;
 	width: 4px;
 	height: 100%;
 }
 
-#main-window .absentee-side-horiz {
+#main-window .absentee-side-horiz { /* Stuff for horizontal edge resizers */
 	left: 0px;
 	width: 100%;
 	height: 4px;
 	-moz-box-orient: horizontal;
 }
+
+
+/* And now the actual resizers */
 
 #main-window .absentee-resizer[dir="left"] {
 	cursor: w-resize;
@@ -92,7 +95,6 @@
 	border-right: 1px solid #999;
 	border-width: 0px 1px 1px;
 	border-style: none solid solid;
-	/* border-color: -moz-use-text-color #999 #999; */
 }
 #main-window .absentee-resizer[dir="topleft"] { cursor: nw-resize; }
 #main-window .absentee-resizer[dir="topright"] {
@@ -103,6 +105,10 @@
 	cursor: sw-resize;
 	transform: scaleX(1);
 }
+
+/* The bottom right resizer gets some special treatment
+ * Such as an image to indicate that the window is indeed resizable
+ */
 #main-window .absentee-resizer[dir="bottomright"] {
 	cursor: se-resize;
 	-moz-appearance:none;
@@ -115,12 +121,15 @@
 	border: 0 none;
 	opacity: 0.6;
 }
+/* And the image changes when you hover over or use that resizer */
 #main-window .absentee-resizer[dir="bottomright"]:hover {
 	background-image: url('chrome://absentee/skin/resizer_new_hover.png');
 }
 #main-window .absentee-resizer[dir="bottomright"]:active {
 	background-image: url('chrome://absentee/skin/resizer_new_click.png');
 }
+
+/* And now the resizer wrappers */
 #main-window .absentee-side[dir="left"] { left: 0px; }
 #main-window .absentee-side[dir="right"] { right: 0px; }
 #main-window .absentee-side[dir="top"] { top: 0px; }
@@ -142,28 +151,44 @@
 	right: 0px;
 }
 
+/* This is the element that contains the wrappers.
+ * Giving it a curved top-right corner.
+ */
 #main-window #absentee-box {
 	border-top-right-radius: 5px;
 }
 
+/* Also giving the window itself a curved top-right corner.
+ * For some reason, the curved corners don't work on windows unless we set
+ * -moz-appearance to none. This causes problems later, though.
+ */
 #main-window {
 	border-top-right-radius: 5px;
 	-moz-appearance: none;
 	background-color: transparent;
 }
 
+/* In order to keep the window's -moz-appearance from causing problems, we give
+ * the window a border when it's not maximized or fullscreen. We only need to put
+ * it on the sides, though.
+ */
 #main-window[abs-winstate="normal"] {
 	border-style: solid;
 	border-width: 0 2px;
 	border-color: #424242;
 }
-
+/* We hide the border when maximized or full screen. */
 #main-window:not([abs-winstate="normal"]) {
 	border-style: hidden;
 	border-width: 0px;
 	border-color: transparent;
 }
 
+/* When not maximized or fullscreen, we set the top-left corner of the window
+ * to also be rounded if the tabs are overflowing. This is where the window's
+ * -moz-appearance would normally cause problems, but since we have a border,
+ * we're okay.
+ */
 #main-window[tab-overflow="true"] .absentee-resizer[dir="left"],
 #main-window[tab-overflow="true"] .absentee-resizer[dir="top"],
 #main-window[tab-overflow="true"] #absentee-box,
@@ -171,12 +196,12 @@
 	border-top-left-radius: 5px;
 }
 
+/* No resizers or rounded corners when maximized or fullscreen. */
 #main-window:not([abs-winstate="normal"]) #absentee-resizer {
 	display: none!important;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 }
-
 #main-window:not([abs-winstate="normal"]) #absentee-box,
 #main-window:not([abs-winstate="normal"]) {
 	border-top-left-radius: 0px;
