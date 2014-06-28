@@ -1,7 +1,7 @@
 absentee
 ========
 
-Quick 'n' dirty Firefox extension to handle window decorator things. Made for fxOpera on Linux, but may work on other themes and platforms.
+Quick 'n' dirty Firefox extension to handle window decorator things. Made for the fxOpera theme on Linux, but may work on other themes and platforms.
 
 Here's what all I did:
 * Turned off window decorations
